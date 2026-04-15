@@ -1,0 +1,302 @@
+[
+  {
+    "id": "B001",
+    "query": "\"Maya and her brother laughed loudly.\" Identify the noun and pronoun in the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B002",
+    "query": "Sentence: \"The teacher praised her.\" Extract the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B003",
+    "query": "Sentence:\nThe boy carried his bag.\nExtract the noun and pronoun from the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B004",
+    "query": "\"Our neighbor helped them yesterday.\" Find the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B005",
+    "query": "Sentence: \"Amina and I studied together.\" Identify the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B006",
+    "query": "Sentence:\nThe cat chased its tail.\nExtract the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B007",
+    "query": "\"The children thanked us warmly.\" Locate the noun and pronoun in the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B008",
+    "query": "Sentence: \"I told my friend a story.\" Extract the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B009",
+    "query": "Sentence:\nThe librarian showed me the shelf.\nFind the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B010",
+    "query": "\"Her cousin called them after school.\" Identify the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B011",
+    "query": "Sentence: \"The dog and its puppy slept.\" Extract the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B012",
+    "query": "Sentence:\nMy sister and I baked bread.\nFind the noun and pronoun in the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B013",
+    "query": "\"Their class won the match.\" Identify the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B014",
+    "query": "Sentence: \"The farmer and his son planted seeds.\" Extract the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B015",
+    "query": "Sentence:\nThe nurse handed her a bottle of water.\nFind the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B016",
+    "query": "\"We visited our grandparents.\" Identify the noun and pronoun in the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B017",
+    "query": "Sentence: \"The coach gave him advice.\" Extract the noun and pronoun.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_pronoun"
+  },
+  {
+    "id": "B018",
+    "query": "\"The chef stirred the soup carefully.\" Identify the noun and verb in the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B019",
+    "query": "Sentence: \"Birds sing at dawn.\" Extract the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B020",
+    "query": "Sentence:\nThe child smiled at the guest.\nFind the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B021",
+    "query": "\"The doctor wrote a note.\" Identify the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B022",
+    "query": "Sentence: \"The wind shook the window.\" Extract the noun and verb in the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B023",
+    "query": "Sentence:\nA driver stopped the bus.\nFind the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B024",
+    "query": "\"The artist painted a mural.\" Locate the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B025",
+    "query": "Sentence: \"The baby cried loudly.\" Identify the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B026",
+    "query": "Sentence:\nA farmer grows rice.\nExtract the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B027",
+    "query": "\"The students answered quickly.\" Find the noun and verb in the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B028",
+    "query": "Sentence: \"The river flooded the field.\" Identify the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B029",
+    "query": "Sentence:\nThe engine rattled loudly.\nFind the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B030",
+    "query": "\"The gardener trimmed the hedge.\" Extract the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B031",
+    "query": "Sentence: \"The moon glowed softly.\" Identify the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B032",
+    "query": "Sentence:\nThe singer rehearsed for hours.\nFind the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B033",
+    "query": "\"The baker mixed the dough.\" Locate the noun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B034",
+    "query": "Sentence: \"She runs every morning.\" Extract the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B035",
+    "query": "\"They arrived early.\" Identify the pronoun and verb in the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B036",
+    "query": "Sentence:\nHe reads before bed.\nFind the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B037",
+    "query": "\"We practice daily.\" Extract the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B038",
+    "query": "Sentence: \"I know the answer.\" Identify the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B039",
+    "query": "Sentence:\nYou listen carefully.\nFind the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B040",
+    "query": "\"It works well.\" Locate the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B041",
+    "query": "Sentence: \"They teach grammar.\" Extract the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B042",
+    "query": "Sentence:\nShe wrote a letter.\nIdentify the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B043",
+    "query": "\"We are ready.\" Find the pronoun and verb in the sentence.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B044",
+    "query": "Sentence: \"He spoke softly.\" Extract the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B045",
+    "query": "Sentence:\nI enjoy reading.\nLocate the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B046",
+    "query": "\"You solved the puzzle.\" Identify the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B047",
+    "query": "Sentence: \"It fell quietly.\" Find the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B048",
+    "query": "Sentence:\nThey laughed together.\nExtract the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B049",
+    "query": "\"She answered politely.\" Locate the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  },
+  {
+    "id": "B050",
+    "query": "Sentence: \"We learn every day.\" Identify the pronoun and verb.",
+    "category": "sentence_parse",
+    "expected_strategy": "sentence_parse_noun_verb"
+  }
+]

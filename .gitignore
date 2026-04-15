@@ -1,0 +1,13 @@
+.venv/
+__pycache__/
+*.pyc
+data/
+runs/
+build/
+logs/
+.claude/
+.env
+.env.*
+
+# Large reference PDFs (textbooks) - don't push to git
+*.pdf

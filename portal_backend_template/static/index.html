@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Grammar Teacher - Local Demo</title>
+  <style>
+    :root {
+      --bg: #f7f7f4;
+      --card: #ffffff;
+      --ink: #1f2937;
+      --muted: #6b7280;
+      --accent: #0f766e;
+      --accent-soft: #d1fae5;
+      --border: #e5e7eb;
+      --danger: #b91c1c;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      color: var(--ink);
+      background: linear-gradient(180deg, #f4f8f7 0%, var(--bg) 45%);
+    }
+    .wrap {
+      max-width: 960px;
+      margin: 24px auto;
+      padding: 0 16px 32px;
+    }
+    .hero {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(15, 118, 110, 0.08);
+      margin-bottom: 16px;
+    }
+    .hero h1 {
+      margin: 0 0 6px;
+      font-size: 1.35rem;
+      color: #115e59;
+    }
+    .hero p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 140px 180px;
+      gap: 10px;
+    }
+    @media (max-width: 800px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    label {
+      display: block;
+      font-size: 0.86rem;
+      color: var(--muted);
+      margin-bottom: 5px;
+    }
+    input, select, textarea, button {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 11px;
+      font: inherit;
+      background: #fff;
+    }
+    textarea { min-height: 90px; resize: vertical; }
+    button {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 120ms ease, box-shadow 120ms ease;
+    }
+    button:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 14px rgba(15, 118, 110, 0.28);
+    }
+    .status {
+      margin-top: 8px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      min-height: 22px;
+    }
+    .error { color: var(--danger); }
+    .answer h2 {
+      margin: 0 0 8px;
+      font-size: 1.03rem;
+      color: #0f766e;
+    }
+    .pill {
+      display: inline-block;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: #065f46;
+      font-size: 0.78rem;
+      margin-right: 6px;
+      margin-bottom: 6px;
+    }
+    .muted { color: var(--muted); }
+    .query-audit {
+      margin-top: 10px;
+      border: 1px dashed #99f6e4;
+      border-radius: 10px;
+      padding: 10px;
+      background: #f0fdfa;
+    }
+    .query-audit strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #115e59;
+    }
+    .query-audit details > summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #115e59;
+      margin-bottom: 8px;
+      user-select: none;
+    }
+    .stage-list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+    .stage-list li {
+      margin-bottom: 8px;
+    }
+    .stage-title {
+      font-weight: 600;
+      color: #134e4a;
+    }
+    .stage-status {
+      font-size: 0.82rem;
+      margin-left: 6px;
+      color: #065f46;
+      background: #d1fae5;
+      border: 1px solid #a7f3d0;
+      padding: 1px 6px;
+      border-radius: 999px;
+    }
+    .trace-block {
+      margin-top: 10px;
+      border: 1px solid #cbd5e1;
+      border-radius: 10px;
+      padding: 10px;
+      background: #f8fafc;
+    }
+    .trace-block strong {
+      display: block;
+      margin-bottom: 6px;
+      color: #0f172a;
+    }
+    .trace-block details {
+      margin-bottom: 8px;
+    }
+    .trace-block summary {
+      cursor: pointer;
+      color: #334155;
+      font-weight: 600;
+    }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+    ul { margin: 7px 0 0; padding-left: 18px; }
+    li { margin-bottom: 5px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <section class="hero">
+      <h1>The Grammar Teacher - Localhost Demo</h1>
+      <p>This demo calls <code>/portal/ask</code> on your local portal backend so you can preview how the portal experience will look.</p>
+    </section>
+
+    <section class="card">
+      <div>
+        <label for="query">Question</label>
+        <textarea id="query" placeholder="Ask a grammar question...">subject verb agreement</textarea>
+      </div>
+      <div id="queryAudit" class="query-audit" style="display:none;">
+        <details id="questionProcessingDetails">
+          <summary>Question Processing</summary>
+          <div style="margin-bottom:8px;">
+            <label>Original Question</label>
+            <pre id="queryOriginal"></pre>
+          </div>
+          <div>
+            <label>Question Sent To The Grammar Teacher</label>
+            <pre id="queryRefined"></pre>
+          </div>
+          <div style="margin-top:10px;">
+            <label>Pipeline Status (What Was Passed At Each Stage)</label>
+            <ul id="stageFlow" class="stage-list"></ul>
+          </div>
+        </details>
+        <div style="margin-top:6px;" class="muted">
+          Tip: expand this section to inspect query transformation and stage-wise pass-through.
+        </div>
+      </div>
+      <div class="grid" style="margin-top:10px;">
+        <div>
+          <label for="stage">Stage (optional)</label>
+          <select id="stage">
+            <option value="">Auto</option>
+            <option value="starter">starter</option>
+            <option value="foundation">foundation</option>
+            <option value="core">core</option>
+            <option value="intermediate">intermediate</option>
+            <option value="advanced">advanced</option>
+            <option value="teacher">teacher</option>
+            <option value="writing">writing</option>
+            <option value="exam">exam</option>
+          </select>
+        </div>
+        <div>
+          <label for="topk">Top K</label>
+          <input id="topk" type="number" min="1" max="10" value="3" />
+        </div>
+        <div style="display:flex;align-items:flex-end;">
+          <button id="askBtn" type="button">Ask The Teacher</button>
+        </div>
+      </div>
+      <div style="margin-top:10px;">
+        <label style="display:flex;align-items:center;gap:8px;color:var(--muted);">
+          <input id="showTrace" type="checkbox" checked style="width:auto;" />
+          Show pipeline trace (orchestration, retrieval, synthesis)
+        </label>
+      </div>
+      <div id="status" class="status"></div>
+    </section>
+
+    <section id="result" class="card answer" style="display:none;">
+      <h2>Response</h2>
+      <div id="meta" class="muted" style="margin-bottom:8px;"></div>
+      <div style="margin-bottom:10px;">
+        <strong>Explanation</strong>
+        <ul id="points"></ul>
+      </div>
+      <div style="margin-bottom:8px;">
+        <strong>Quick Check</strong>
+        <pre id="quick"></pre>
+      </div>
+      <div id="referenceBlock" style="margin-bottom:8px;">
+        <strong>Reference</strong>
+        <pre id="reference"></pre>
+      </div>
+      <div>
+        <strong>Focus</strong>
+        <div id="focus"></div>
+      </div>
+      <div id="traceBlock" class="trace-block" style="display:none;">
+        <strong>Pipeline Trace</strong>
+        <details open>
+          <summary>Orchestration</summary>
+          <pre id="traceOrchestration"></pre>
+        </details>
+        <details>
+          <summary>Retrieval</summary>
+          <pre id="traceRetrieval"></pre>
+        </details>
+        <details>
+          <summary>Synthesis</summary>
+          <pre id="traceSynthesis"></pre>
+        </details>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const statusEl = document.getElementById("status");
+    const resultEl = document.getElementById("result");
+    const pointsEl = document.getElementById("points");
+    const metaEl = document.getElementById("meta");
+    const quickEl = document.getElementById("quick");
+    const referenceEl = document.getElementById("reference");
+    const referenceBlockEl = document.getElementById("referenceBlock");
+    const focusEl = document.getElementById("focus");
+    const queryAuditEl = document.getElementById("queryAudit");
+    const queryOriginalEl = document.getElementById("queryOriginal");
+    const queryRefinedEl = document.getElementById("queryRefined");
+    const stageFlowEl = document.getElementById("stageFlow");
+    const traceBlockEl = document.getElementById("traceBlock");
+    const traceOrchestrationEl = document.getElementById("traceOrchestration");
+    const traceRetrievalEl = document.getElementById("traceRetrieval");
+    const traceSynthesisEl = document.getElementById("traceSynthesis");
+
+    function addStageLine(title, status, detail) {
+      const li = document.createElement("li");
+      const titleSpan = document.createElement("span");
+      titleSpan.className = "stage-title";
+      titleSpan.textContent = title;
+      li.appendChild(titleSpan);
+
+      const statusSpan = document.createElement("span");
+      statusSpan.className = "stage-status";
+      statusSpan.textContent = status;
+      li.appendChild(statusSpan);
+
+      const detailPre = document.createElement("pre");
+      detailPre.style.marginTop = "4px";
+      detailPre.textContent = detail;
+      li.appendChild(detailPre);
+      stageFlowEl.appendChild(li);
+    }
+
+    function tokenSample(tokens, maxItems = 5) {
+      if (!Array.isArray(tokens) || tokens.length === 0) {
+        return "n/a";
+      }
+      const sample = tokens.slice(0, maxItems);
+      return `${sample.join(", ")} (sample ${sample.length}/${tokens.length})`;
+    }
+
+    async function askTeacher() {
+      const query = document.getElementById("query").value.trim();
+      const stage = document.getElementById("stage").value.trim();
+      const topK = parseInt(document.getElementById("topk").value, 10) || 3;
+      const includeTrace = true;
+      const showTracePanel = document.getElementById("showTrace").checked;
+      if (!query) {
+        statusEl.textContent = "Please enter a grammar question first.";
+        statusEl.className = "status error";
+        return;
+      }
+
+      statusEl.textContent = "Thinking...";
+      statusEl.className = "status";
+      resultEl.style.display = "none";
+
+      const payload = {
+        query,
+        top_k: Math.min(Math.max(topK, 1), 10),
+        include_trace: includeTrace,
+        learner_id: "demo-user",
+        session_id: "demo-session"
+      };
+      if (stage) payload.stage = stage;
+
+      try {
+        const res = await fetch("/portal/ask", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          throw new Error((data && data.detail) ? JSON.stringify(data.detail) : `HTTP ${res.status}`);
+        }
+
+        pointsEl.innerHTML = "";
+        (data.explanation_points || []).forEach((point) => {
+          const li = document.createElement("li");
+          li.textContent = point;
+          pointsEl.appendChild(li);
+        });
+        metaEl.textContent = `Stage: ${data.stage || "n/a"} | Level: ${data.learner_band || "n/a"} | Score: ${data.score ?? "n/a"}`;
+        quickEl.textContent = data.quick_check || "";
+        queryOriginalEl.textContent = data.query_original || query;
+        queryRefinedEl.textContent = data.query_refined || data.query_sent_to_tutor || query;
+        queryAuditEl.style.display = "block";
+        stageFlowEl.innerHTML = "";
+        const refinedQuery = data.query_refined || data.query_sent_to_tutor || query;
+        const segmentsOriginal = Array.isArray(data.query_segments_original) ? data.query_segments_original : [];
+        const segmentsRefined = Array.isArray(data.query_segments_refined) ? data.query_segments_refined : [];
+        const hasComposite = segmentsRefined.length > 1;
+        const wasRefined = (data.query_original || query).trim().toLowerCase() !== refinedQuery.trim().toLowerCase();
+        addStageLine(
+          "Stage 1 - Input Capture",
+          "done",
+          `Received from UI: ${data.query_original || query}`
+        );
+        addStageLine(
+          "Stage 2 - Query Polishing",
+          hasComposite ? "segmented" : (wasRefined ? "updated" : "no-change"),
+          hasComposite
+            ? `Detected composite question with ${segmentsRefined.length} part(s).\nOriginal parts: ${segmentsOriginal.join(" | ")}\nRefined parts: ${segmentsRefined.join(" | ")}`
+            : (wasRefined
+              ? `Refined for better teaching/retrieval: ${refinedQuery}`
+              : `No correction needed. Passed as-is: ${refinedQuery}`)
+        );
+        if (data.pipeline_trace && data.pipeline_trace.orchestration) {
+          const orch = data.pipeline_trace.orchestration;
+          addStageLine(
+            "Stage 3 - Orchestration",
+            "done",
+            `top_k=${orch.top_k ?? "n/a"}, stage_filter=${orch.stage_filter ?? "auto"}, composite=${orch.is_composite_query ? "yes" : "no"}`
+          );
+        } else {
+          addStageLine(
+            "Stage 3 - Orchestration",
+            "limited",
+            "Trace details were not returned by backend. Restart API + portal servers to load latest code."
+          );
+        }
+        if (data.pipeline_trace && data.pipeline_trace.retrieval) {
+          const ret = data.pipeline_trace.retrieval;
+          const topRef = (ret.top_matches && ret.top_matches.length > 0) ? ret.top_matches[0].reference : "none";
+          const segmentRoutes = Array.isArray(ret.segment_routes) ? ret.segment_routes : [];
+          const segmentRouteSummary = segmentRoutes.length > 0
+            ? `\nSegment routes: ${segmentRoutes.map((s) => `#${s.segment_index} score=${s.score ?? "n/a"}`).join(" | ")}`
+            : "";
+          addStageLine(
+            "Stage 4 - Retrieval",
+            "done",
+            `Tokens sent (top 5 sample): ${tokenSample(ret.tokens_used, 5)}\nTop match: ${topRef}\nMatches considered: ${(ret.top_matches || []).length}${segmentRouteSummary}`
+          );
+        } else {
+          addStageLine(
+            "Stage 4 - Retrieval",
+            "limited",
+            "Trace details were not returned by backend. Retrieval internals are unavailable in this response."
+          );
+        }
+        if (data.pipeline_trace && data.pipeline_trace.synthesis) {
+          const syn = data.pipeline_trace.synthesis;
+          addStageLine(
+            "Stage 5 - Synthesis",
+            "done",
+            `Strategy: ${syn.strategy || "n/a"}\nConcept: ${syn.concept_detected || "n/a"}\nFinal points: ${syn.final_points_count ?? "n/a"}`
+          );
+        } else {
+          addStageLine(
+            "Stage 5 - Synthesis",
+            "limited",
+            "Trace details were not returned by backend. Synthesis internals are unavailable in this response."
+          );
+        }
+        addStageLine(
+          "Stage 6 - Final Response",
+          data.ok ? "done" : "fallback",
+          `Returned ${Array.isArray(data.explanation_points) ? data.explanation_points.length : 0} explanation point(s) to UI.`
+        );
+        if (data.reference) {
+          referenceEl.textContent = data.reference;
+          referenceBlockEl.style.display = "block";
+        } else {
+          referenceEl.textContent = "";
+          referenceBlockEl.style.display = "none";
+        }
+        focusEl.innerHTML = "";
+        (data.focus || []).forEach((item) => {
+          const span = document.createElement("span");
+          span.className = "pill";
+          span.textContent = item;
+          focusEl.appendChild(span);
+        });
+        if (data.pipeline_trace && showTracePanel) {
+          traceOrchestrationEl.textContent = JSON.stringify(data.pipeline_trace.orchestration || {}, null, 2);
+          traceRetrievalEl.textContent = JSON.stringify(data.pipeline_trace.retrieval || {}, null, 2);
+          traceSynthesisEl.textContent = JSON.stringify(data.pipeline_trace.synthesis || {}, null, 2);
+          traceBlockEl.style.display = "block";
+        } else {
+          traceOrchestrationEl.textContent = "";
+          traceRetrievalEl.textContent = "";
+          traceSynthesisEl.textContent = "";
+          traceBlockEl.style.display = "none";
+        }
+
+        statusEl.textContent = "Success. Response received.";
+        statusEl.className = "status";
+        resultEl.style.display = "block";
+      } catch (err) {
+        statusEl.textContent = `Request failed: ${err.message}`;
+        statusEl.className = "status error";
+      }
+    }
+
+    document.getElementById("askBtn").addEventListener("click", askTeacher);
+  </script>
+</body>
+</html>
